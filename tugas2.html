@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      function isPrime(number) {
+        if (number < 2) {
+          return false;
+        }
+        for (let i = 2; i <= Math.sqrt(number); i++) {
+          if (number % i === 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function classifySentence(sentence) {
+        const wordCount = sentence.trim().split(" ").length;
+        const characterCount = sentence.replace(/\s/g, "").length;
+
+        let result = {
+          kalimat: sentence,
+          jumlah_karakter: characterCount,
+          jumlah_kata: wordCount,
+          jenis_bilangan: wordCount % 2 === 1 ? "ganjil" : "genap",
+          prima: isPrime(wordCount),
+        };
+
+        if (result.jenis_bilangan === "ganjil") {
+          result.kalimat = sentence.toLowerCase();
+        }
+
+        if (result.prima) {
+          result.kalimat = sentence.toUpperCase();
+        }
+
+        return result;
+      }
+
+      // Contoh penggunaan:
+      const kalimat1 = "The Tormentor mempunyai ilmu programing yang tak terbatas";
+      const result = classifySentence(kalimat1);
+
+      console.log(result);
+    </script>
+  </body>
+</html>
